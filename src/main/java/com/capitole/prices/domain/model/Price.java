@@ -15,7 +15,7 @@ public class Price {
     private final Integer priority;
     private final String currency;
 
-    private Price(Builder builder) {
+    Price(Builder builder) {
         this.productId = Objects.requireNonNull(builder.productId, "productId cannot be null");
         this.brandId = Objects.requireNonNull(builder.brandId, "brandId cannot be null");
         this.priceList = Objects.requireNonNull(builder.priceList, "priceList cannot be null");

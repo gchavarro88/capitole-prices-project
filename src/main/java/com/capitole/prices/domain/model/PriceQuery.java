@@ -10,7 +10,7 @@ public class PriceQuery {
     private final Long productId;
     private final Integer brandId;
 
-    private PriceQuery(LocalDateTime applicationDate, Long productId, Integer brandId) {
+    PriceQuery(LocalDateTime applicationDate, Long productId, Integer brandId) {
         this.applicationDate = Objects.requireNonNull(applicationDate, "applicationDate cannot be null");
         this.productId = Objects.requireNonNull(productId, "productId cannot be null");
         this.brandId = Objects.requireNonNull(brandId, "brandId cannot be null");
