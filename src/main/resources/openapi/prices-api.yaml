@@ -1,0 +1,129 @@
+openapi: 3.0.3
+info:
+  title: Capitole Prices API
+  description: REST API for querying product prices by date and brand (Capitole Interview Test)
+  version: 1.0.0
+  contact:
+    name: Gustavo Chavarro Ortiz
+
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+
+tags:
+  - name: capitole prices
+    description: Capitole Price query operations
+
+paths:
+  /api/v1/prices:
+    get:
+      tags:
+        - prices
+      operationId: getPrice
+      summary: Get applicable price for a product
+      description: Returns the applicable price for a product based on application date, product ID, and brand ID
+      parameters:
+        - name: applicationDate
+          in: query
+          required: true
+          description: Date and time when the price should be applied (ISO 8601 format)
+          schema:
+            type: string
+            format: date-time
+          example: "2020-06-14T10:00:00"
+        - name: productId
+          in: query
+          required: true
+          description: Product identifier
+          schema:
+            type: integer
+            format: int64
+          example: 35455
+        - name: brandId
+          in: query
+          required: true
+          description: Brand identifier (1 = ZARA)
+          schema:
+            type: integer
+            format: int32
+          example: 1
+      responses:
+        '200':
+          description: Price found successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PriceResponse'
+        '404':
+          description: No price found for the given criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    PriceResponse:
+      type: object
+      required:
+        - productId
+        - brandId
+        - priceList
+        - startDate
+        - endDate
+        - price
+      properties:
+        productId:
+          type: integer
+          format: int64
+          description: Product identifier
+          example: 35455
+        brandId:
+          type: integer
+          format: int32
+          description: Brand identifier
+          example: 1
+        priceList:
+          type: integer
+          format: int32
+          description: Applicable price list identifier
+          example: 1
+        startDate:
+          type: string
+          format: date-time
+          description: Start date of price validity
+          example: "2020-06-14T00:00:00"
+        endDate:
+          type: string
+          format: date-time
+          description: End date of price validity
+          example: "2020-12-31T23:59:59"
+        price:
+          type: number
+          format: double
+          description: Final sale price
+          example: 35.50
+        currency:
+          type: string
+          description: Currency ISO code
+          example: "EUR"
+
+    ErrorResponse:
+      type: object
+      required:
+        - message
+      properties:
+        message:
+          type: string
+          description: Error message
+          example: "Price not found"
+        timestamp:
+          type: string
+          format: date-time
+          description: Error timestamp
