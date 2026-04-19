@@ -5,10 +5,12 @@ import com.capitole.prices.domain.model.Price;
 import com.capitole.prices.domain.model.PriceQuery;
 import com.capitole.prices.domain.port.input.PriceUseCase;
 import com.capitole.prices.domain.port.output.PriceRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
 
+@Service
 public class PriceService implements PriceUseCase {
     private final PriceRepository priceRepository;
 
