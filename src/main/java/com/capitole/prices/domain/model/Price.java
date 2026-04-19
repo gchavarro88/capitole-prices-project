@@ -1,10 +1,9 @@
 package com.capitole.prices.domain.model;
 
-import lombok.Data;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
-@Data
+
 public class Price {
     private final Long productId;
     private final Integer brandId;
@@ -47,6 +46,39 @@ public class Price {
 
     public boolean hasHigherPriorityThan(Price other) {
         return this.priority > other.priority;
+    }
+
+    // Getters
+    public Long getProductId() {
+        return productId;
+    }
+
+    public Integer getBrandId() {
+        return brandId;
+    }
+
+    public Integer getPriceList() {
+        return priceList;
+    }
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public LocalDateTime getEndDate() {
+        return endDate;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public Integer getPriority() {
+        return priority;
+    }
+
+    public String getCurrency() {
+        return currency;
     }
 
     public static Builder builder() {

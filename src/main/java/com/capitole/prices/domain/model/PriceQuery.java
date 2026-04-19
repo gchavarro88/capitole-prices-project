@@ -1,10 +1,8 @@
 package com.capitole.prices.domain.model;
 
-import lombok.Data;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Data
 public class PriceQuery {
     private final LocalDateTime applicationDate;
     private final Long productId;
@@ -18,5 +16,18 @@ public class PriceQuery {
 
     public static PriceQuery of(LocalDateTime applicationDate, Long productId, Integer brandId) {
         return new PriceQuery(applicationDate, productId, brandId);
+    }
+
+    // Getters
+    public LocalDateTime getApplicationDate() {
+        return applicationDate;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public Integer getBrandId() {
+        return brandId;
     }
 }
