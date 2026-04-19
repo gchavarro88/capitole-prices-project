@@ -34,6 +34,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<openapi-generator.version>7.6.0</openapi-generator.version>
 		<jackson-databind-nullable.version>0.2.6</jackson-databind-nullable.version>
+		<lombok-version>1.18.32</lombok-version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -53,6 +54,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<!-- Lombok Dependency -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok-version}</version>
+			<optional>true</optional>
 		</dependency>
 
 		<!-- H2 Database -->
