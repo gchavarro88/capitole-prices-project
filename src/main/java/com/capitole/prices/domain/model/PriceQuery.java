@@ -12,6 +12,11 @@ public class PriceQuery {
         this.applicationDate = Objects.requireNonNull(applicationDate, "applicationDate cannot be null");
         this.productId = Objects.requireNonNull(productId, "productId cannot be null");
         this.brandId = Objects.requireNonNull(brandId, "brandId cannot be null");
+        validateNullValue(applicationDate, "applicationDate");
+        validateNullValue(productId, "productId");
+        isGreaterThanZero(productId, "productId");
+        validateNullValue(brandId, "brandId");
+        isGreaterThanZero(brandId, "brandId");
     }
 
     public static PriceQuery of(LocalDateTime applicationDate, Long productId, Integer brandId) {
@@ -29,5 +34,17 @@ public class PriceQuery {
 
     public Integer getBrandId() {
         return brandId;
+    }
+
+    public void isGreaterThanZero(Number number, String fieldName) {
+        if (number.longValue() <= 0) {
+            throw new IllegalArgumentException(String.format("%s should be greater than zero", fieldName));
+        }
+    }
+
+    public void validateNullValue(Object field, String fieldName) {
+        if (Objects.isNull(field)) {
+            throw new IllegalArgumentException(String.format("%s shouldn't be null", fieldName));
+        }
     }
 }

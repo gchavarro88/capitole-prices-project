@@ -37,7 +37,6 @@ public class PriceController {
 
         Price price = priceUseCase.execute(query);
         PriceResponse response = PriceRestMapper.toResponse(price);
-
         return ResponseEntity.ok(response);
     }
 }
