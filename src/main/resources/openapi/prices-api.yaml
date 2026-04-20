@@ -7,7 +7,7 @@ info:
     name: Gustavo Chavarro Ortiz
 
 servers:
-  - url: http://localhost:8080
+  - url: http://localhost:8080/
     description: Local development server
 
 tags:
@@ -15,10 +15,10 @@ tags:
     description: Capitole Price query operations
 
 paths:
-  /api/v1/prices:
+  /price:
     get:
       tags:
-        - prices
+        - price
       operationId: getPrice
       summary: Get applicable price for a product
       description: Returns the applicable price for a product based on application date, product ID, and brand ID
@@ -30,7 +30,7 @@ paths:
           schema:
             type: string
             format: date-time
-          example: "2020-06-14T10:00:00"
+          example: "2020-06-14T10:00:00-00:00"
         - name: productId
           in: query
           required: true
